@@ -1,7 +1,6 @@
 """
 This scripts sweeps assets from sub accounts to master accounts.
 """
-from locale import currency
 from quidax import quidax
 
 
@@ -21,9 +20,6 @@ def sweeper():
     for user in sub_users_id:
 
         # Loop through assets and get balance
-
-        print(f"user {user}")
-
         for asset in all_assets:
 
             user_wallet_info = quidax.wallets.fetch_a_specific_currency_wallet(
@@ -55,5 +51,5 @@ def sweeper():
         print("")
         print("")
 
-
-sweeper()
+if __name__ == "__main__":
+    sweeper()
