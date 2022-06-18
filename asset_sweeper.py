@@ -9,8 +9,7 @@ def sweeper():
     master_account = quidax.users.get_account_details("me")['data']['id']
 
     # Get list of available assets on quidax0
-    all_assets = list(set([assets['base_unit']
-                      for assets in quidax.markets.list_all_markets()['data']]))
+    all_assets = ['usdc', 'busd', 'usdt']
 
     # Get sub users
     sub_users_id = list(
@@ -38,18 +37,17 @@ def sweeper():
             }
 
             if balance > 0:
-                withdrawal_request = quidax.withdrawal.create_a_withdrawal(
-                    user, **data,)
+                # If balance available, send it to master account.
+                quidax.withdrawal.create_a_withdrawal(
+                    user, **data,
+                )
 
-                print(f"money dey here: {currency} {user} {balance}")
-
+                print(f"user balance: {currency}:{user}:{balance}")
             else:
-                print("this nigga broke")
+                print("no asset present.")
 
-            # If balance available, send it to master account.
 
-        print("")
-        print("")
+        print("\n")
 
 if __name__ == "__main__":
     sweeper()
