@@ -28,7 +28,8 @@ def sweeper():
 
             # Fetch user wallet objects
             user_wallet_info = quidax.wallets.fetch_a_specific_currency_wallet(
-                user, asset)
+                user, asset,
+            )
             
             # Fetch currency
             currency = user_wallet_info['data']['currency']
@@ -56,7 +57,7 @@ def sweeper():
                 # Print user balance
                 print(f"user balance: {currency} : {user} : {balance}")
             else:
-                
+
                 # Print no asset present
                 print("no asset present.")
 
